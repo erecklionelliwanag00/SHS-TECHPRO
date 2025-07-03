@@ -1,0 +1,42 @@
+{
+    "Mr. Liwanag": {
+        "status": "On Leave",
+        "time": "2025-07-03 08:32:42"
+    },
+    "Ms. Reyes": {
+        "status": "In Faculty Room",
+        "time": "2025-07-03 08:31:14"
+    },
+    "Mr. Santos": {
+        "status": "In Class",
+        "time": "2025-07-03 08:45:02"
+    },
+    "Marvin B. Acabado": {
+        "status": "On Break",
+        "time": "2025-07-03 08:58:56"
+    },
+    "Grace Anne S. Balitaan": {
+        "status": "In Class",
+        "time": "2025-07-03 08:59:03"
+    },
+    "Aljune J. Castillo": {
+        "status": "On Break",
+        "time": "2025-07-03 09:07:17"
+    },
+    "Liezel M. Gan": {
+        "status": "On Leave",
+        "time": "2025-07-03 09:36:15"
+    },
+    "Catalino Jr C. Bacay": {
+        "status": "Off-Campus",
+        "time": "2025-07-03 10:20:02"
+    },
+    "Zyril Jane D. Hatulan": {
+        "status": "In Class",
+        "time": "2025-07-03 10:22:25"
+    },
+    "Jane S. Maranan": {
+        "status": "In Class",
+        "time": "2025-07-03 12:25:21"
+    }
+}

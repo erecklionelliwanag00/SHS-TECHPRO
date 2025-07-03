@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TVL Bulletin Board</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffdf2;
+      padding: 30px;
+    }
+    .bulletin {
+      background: #fffbea;
+      border-left: 6px solid #eab308;
+      padding: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+	.menu a {
+      display: inline-block;
+      background-color: #facc15;
+      color: #4b4b4b;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .menu a:hover {
+      background-color: #eab308;
+    }
+  </style>
+</head>
+<body>
+	<div class="menu">
+	<a href="home.html" target="_blank">🏠 Home</a>
+    <a href="index.html" target="_blank">📌 Bulletin Board</a>
+    <a href="view_whereabouts.html" target="_blank">📍 Teacher Whereabouts</a>
+	<a href="view_org.html" target="_blank">🧿 Organizational Chart</a>
+  </div>
+  <h1>📌 TVL Bulletin Board</h1>
+  <div class="bulletin" id="bulletin-content" style="white-space: pre-wrap;">
+    Loading...
+  </div>
+
+  <script>
+    fetch('bulletin.txt')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('bulletin-content').textContent = data;
+      })
+      .catch(err => {
+        document.getElementById('bulletin-content').textContent = 'Unable to load bulletin.';
+      });
+  </script>
+</body>
+</html>

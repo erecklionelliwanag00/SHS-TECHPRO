@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Whereabouts Board</title>
+  <style>
+    body { font-family: Arial; background-color: #fffdf2; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+    th { background-color: #facc15; }
+    td.status { font-weight: bold; }
+    td.time { color: #555; font-size: 0.9em; }
+	 .menu {
+      margin-top: 40px;
+    }
+    .menu a {
+      display: inline-block;
+      background-color: #facc15;
+      color: #4b4b4b;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .menu a:hover {
+      background-color: #eab308;
+    }
+  </style>
+</head>
+<body>
+	<div class="menu">
+	<a href="home.html" target="_blank">🏠 Home</a>
+    <a href="index.html" target="_blank">📌 Bulletin Board</a>
+    <a href="view_whereabouts.html" target="_blank">📍 Teacher Whereabouts</a>
+	<a href="view_org.html" target="_blank">🧿 Organizational Chart</a>
+  </div>
+
+  <h2>📍 Whereabouts</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody id="statusTable">
+      <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    fetch("whereabouts.json")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.getElementById("statusTable");
+        tbody.innerHTML = "";
+
+        // Sort by teacher name
+        const sorted = Object.keys(data).sort();
+
+        sorted.forEach(name => {
+          const row = `<tr>
+            <td>${name}</td>
+            <td class="status">${data[name].status}</td>
+            <td class="time">${data[name].time}</td>
+          </tr>`;
+          tbody.innerHTML += row;
+        });
+      })
+      .catch(() => {
+        document.getElementById("statusTable").innerHTML = "<tr><td colspan='3'>❌ Unable to load data.</td></tr>";
+      });
+  </script>
+
+</body>
+</html>

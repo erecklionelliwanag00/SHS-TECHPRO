@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Bulletin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #fffefc;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-family: monospace;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #facc15;
+      border: none;
+      cursor: pointer;
+    }
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Update Bulletin</h1>
+  <textarea id="bulletinText" placeholder="Enter your bulletin..."></textarea><br>
+  <button onclick="saveBulletin()">Save</button>
+  <div class="message" id="message"></div>
+
+  <script>
+    // Load current bulletin
+    fetch('bulletin.txt')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('bulletinText').value = data;
+      });
+
+    function saveBulletin() {
+      const content = document.getElementById('bulletinText').value;
+      fetch('save.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'content=' + encodeURIComponent(content)
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('message').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('message').textContent = 'Error saving bulletin.';
+      });
+    }
+  </script>
+</body>
+</html>

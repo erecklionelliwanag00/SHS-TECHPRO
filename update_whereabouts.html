@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Teacher Whereabouts</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    select, button { padding: 10px; font-size: 16px; margin: 5px; }
+    .message { margin-top: 10px; font-weight: bold; }
+	 .menu {
+      margin-top: 40px;
+    }
+    .menu a {
+      display: inline-block;
+      background-color: #facc15;
+      color: #4b4b4b;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .menu a:hover {
+      background-color: #eab308;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🧭 Teacher Whereabouts Update</h2>
+
+  <label for="teacher">Select Teacher:</label><br>
+  <select id="teacher">
+    <option value="">-- Select Teacher --</option>
+    <!-- Sample teachers -->
+    <option value="Marvin B. Acabado">Marvin B. Acabado</option>
+	<option value="Catalino Jr C. Bacay">Catalino Jr C. Bacay</option>
+	<option value="Grace Anne S. Balitaan">Grace Anne S. Balitaan</option>
+	<option value="Joram Jay V. Camposano">Joram Jay V. Camposano</option>
+	<option value="Aljune J. Castillo">Aljune J. Castillo</option>
+	<option value="Mark Jeffry V. Coz">Mark Jeffry V. Coz</option>
+	<option value="Liezel M. Gan">Liezel M. Gan</option>
+	<option value="Jeffrey A. Gardoce">Jeffrey A. Gardoce</option>
+	<option value="Zyril Jane D. Hatulan">Zyril Jane D. Hatulan</option>
+    <option value="Carleen M. Ilagan">Carleen M. Ilagan</option>
+    <option value="Ereck Lionel C. Liwanag">Ereck Lionel C. Liwanag</option>
+	<option value="Jane S. Maranan">Jane S. Maranan</option>
+	<option value="Liezel L. Maranan">Liezel L. Maranan</option>
+	<option value="Kristal Gay A. Ollero">Kristal Gay A. Ollero</option>
+	<option value="Celeste A. Ramos">Celeste A. Ramos</option>
+	<option value="Regina B. Rosales">Regina B. Rosales</option>
+	<option value="Clarisse Q. Sale">Clarisse Q. Sale</option>
+	<option value="Regine P. Santiago">Regine P. Santiago</option>
+	<option value="Eric H. Tamares">Eric H. Tamares</option>
+	<option value="King Brian A. Tobias">King Brian A. Tobias</option>
+	<option value="Dianna Lois D. Tugas">Dianna Lois D. Tugas</option>
+	<option value="Saila Morselle H. Yambao">Saila Morselle H. Yambao</option>
+    <!-- Add up to 23 -->
+  </select><br>
+
+  <label for="status">Status:</label><br>
+  <select id="status">
+    <option value="In Class">In Class</option>
+    <option value="In Faculty Room">In Faculty Room</option>
+    <option value="On Break">On Break</option>
+    <option value="In Meeting">In Meeting</option>
+    <option value="On Leave">On Leave</option>
+    <option value="Off-Campus">Off-Campus</option>
+  </select><br>
+
+  <button onclick="submitStatus()">Update</button>
+  <div class="message" id="response"></div>
+
+  <script>
+    function submitStatus() {
+      const teacher = document.getElementById("teacher").value;
+      const status = document.getElementById("status").value;
+
+      if (!teacher || !status) {
+        document.getElementById("response").textContent = "❌ Please select both teacher and status.";
+        return;
+      }
+
+      fetch("save_whereabouts.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `teacher=${encodeURIComponent(teacher)}&status=${encodeURIComponent(status)}`
+      })
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("response").textContent = data;
+      });
+    }
+  </script>
+
+</body>
+</html>
